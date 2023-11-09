@@ -27,7 +27,6 @@ const DemoCard = ({ children, name }) => {
 };
 
 const demoComponents = [
-  { name: "Toast", component: <ToastDemo /> },
   { name: "Sheet", component: <SheetDemo /> },
   { name: "Alert", component: <AlertDialogDemo /> },
   { name: "Toggle Group", component: <ToggleGroupDemo /> },
