@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { useColorScheme } from "react-native";
 import { TamaguiProvider } from "tamagui";
 import config from "../tamagui.config";
+import { ToastProvider } from "@tamagui/toast";
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
@@ -51,13 +52,17 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <TamaguiProvider config={config}>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="modal" options={{ presentation: "modal" }} />
-        </Stack>
-      </ThemeProvider>
-    </TamaguiProvider>
+    <ToastProvider>
+      <TamaguiProvider config={config}>
+        <ThemeProvider
+          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+        >
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+          </Stack>
+        </ThemeProvider>
+      </TamaguiProvider>
+    </ToastProvider>
   );
 }

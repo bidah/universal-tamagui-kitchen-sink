@@ -13,6 +13,8 @@ import { SelectDemo } from "../../components/Select";
 import { ToggleGroupDemo } from "../../components/ToggleGroup";
 import { AlertDialogDemo } from "../../components/AlertDialog";
 import { H2, View } from "tamagui";
+import { SheetDemo } from "../../components/Sheet";
+import { ToastDemo } from "../../components/Toasts";
 
 const DemoCard = ({ children, name }) => {
   return (
@@ -25,20 +27,15 @@ const DemoCard = ({ children, name }) => {
 };
 
 const demoComponents = [
+  { name: "Toast", component: <ToastDemo /> },
+  { name: "Sheet", component: <SheetDemo /> },
   { name: "Alert", component: <AlertDialogDemo /> },
-
   { name: "Toggle Group", component: <ToggleGroupDemo /> },
-
   { name: "Select", component: <SelectDemo /> },
-
   { name: "Checkbox", component: <CheckboxDemo /> },
-
   { name: "Forms", component: <FormsDemo size={"$1.5"} /> },
-
   { name: "Inputs", component: <InputsDemo /> },
-
   { name: "Label", component: <LabelDemo /> },
-
   { name: "Progress", component: <ProgressDemo /> },
 ];
 export default function TabOneScreen() {
