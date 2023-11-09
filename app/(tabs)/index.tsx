@@ -1,8 +1,8 @@
 import { StyleSheet } from "react-native";
-import { Button } from "tamagui";
+import { Button, H3, Separator, Stack } from "tamagui";
 
 import EditScreenInfo from "../../components/EditScreenInfo";
-import { Text, View } from "../../components/Themed";
+import { Text } from "../../components/Themed";
 import { CheckboxDemo } from "../../components/Checkbox";
 import { FormsDemo } from "../../components/Form";
 import { InputsDemo } from "../../components/Input";
@@ -12,42 +12,43 @@ import { ScrollView } from "tamagui";
 import { SelectDemo } from "../../components/Select";
 import { ToggleGroupDemo } from "../../components/ToggleGroup";
 import { AlertDialogDemo } from "../../components/AlertDialog";
+import { H2, View } from "tamagui";
 
-export default function TabOneScreen() {
+const DemoCard = ({ children, name }) => {
   return (
-    <ScrollView bg={"white"}>
-      <AlertDialogDemo />
-      <ToggleGroupDemo />
-      <SelectDemo />
-      <Button>hello</Button>
-      <CheckboxDemo />
-      <FormsDemo size={"$1.5"} />
-      <InputsDemo />
-      <LabelDemo />
-      <ProgressDemo />
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
+    <View paddingVertical="$2">
+      <H3>{name}</H3>
+      {children}
+      <Separator paddingVertical="$2" />
+    </View>
+  );
+};
+
+const demoComponents = [
+  { name: "Alert", component: <AlertDialogDemo /> },
+
+  { name: "Toggle Group", component: <ToggleGroupDemo /> },
+
+  { name: "Select", component: <SelectDemo /> },
+
+  { name: "Checkbox", component: <CheckboxDemo /> },
+
+  { name: "Forms", component: <FormsDemo size={"$1.5"} /> },
+
+  { name: "Inputs", component: <InputsDemo /> },
+
+  { name: "Label", component: <LabelDemo /> },
+
+  { name: "Progress", component: <ProgressDemo /> },
+];
+export default function TabOneScreen() {
+  // return (
+
+  return (
+    <ScrollView paddingHorizontal="$4" bg={"white"} flex={1}>
+      {demoComponents.map((demo) => {
+        return <DemoCard name={demo.name}>{demo.component}</DemoCard>;
+      })}
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
-  },
-});
